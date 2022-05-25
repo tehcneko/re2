@@ -1,0 +1,27 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+        externalNativeBuild {
+            ndkBuild.arguments "-j${Runtime.runtime.availableProcessors()}"
+        }
+    }
+    externalNativeBuild {
+        ndkBuild.path 'src/main/cpp/Android.mk'
+    }
+    prefab {
+        re2 {
+            headers "src/main/cpp/re2/re2"
+        }
+    }
+    buildFeatures {
+        buildConfig false
+        prefabPublishing true
+    }
+}
